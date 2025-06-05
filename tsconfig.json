@@ -19,22 +19,15 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
     "plugins": [
       {
         "name": "next"
       }
-<<<<<<< HEAD
     ]
-=======
-    ],
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    }
->>>>>>> 2627ce2 (Initial LangChain backend commit)
   },
   "include": [
     "**/*.ts",
@@ -46,4 +39,3 @@
     "node_modules"
   ]
 }
-
