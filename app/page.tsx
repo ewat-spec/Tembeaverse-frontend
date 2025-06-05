@@ -47,6 +47,11 @@ export default function Home() {
             <p>No drivers available at the moment.</p>
           )}
         </div>
+      </div>
 
-        <div className="mt-16 text-center text-sm text-gray-500">
-          Powered by <span className="font-bold text-blue-600">OpenAI</span> +
+      <div className="mt-16 text-center text-sm text-gray-500">
+        Powered by <span className="font-bold text-blue-600">OpenAI</span>
+      </div>
+    </main>
+  );
+}
