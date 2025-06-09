@@ -2,19 +2,27 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
-import Image from "next/image";
 import UserMenu from "@/component/UserMenu";
 
+// Define a type for driver
+type Driver = {
+  id: string | number;
+  name: string;
+  phone?: string;
+  vehicle_type?: string;
+};
+
 export default function Home() {
-  const [drivers, setDrivers] = useState<any[]>([]);
+  const [drivers, setDrivers] = useState<Driver[]>([]);
 
   useEffect(() => {
     async function fetchDrivers() {
       const { data, error } = await supabase.from("drivers").select("*");
       if (error) {
-        console.error("Error fetching drivers:", error);
-      } else {
-        setDrivers(data || []);
+        console.error("Error fetching drivers:", error.message || error);
+        setDrivers([]); // Clear drivers on error
+      } else if (data) {
+        setDrivers(data as Driver[]);
       }
     }
 
@@ -32,15 +40,15 @@ export default function Home() {
 
         <h2 className="text-2xl font-semibold mb-4">Available Drivers</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {drivers.length > 0 ? (
+          {drivers && drivers.length > 0 ? (
             drivers.map((driver) => (
               <div
                 key={driver.id}
                 className="p-4 border rounded-lg shadow-sm bg-gray-50 hover:bg-gray-100 transition"
               >
                 <h3 className="text-xl font-medium">{driver.name}</h3>
-                <p className="text-sm">Phone: {driver.phone}</p>
-                <p className="text-sm">Vehicle: {driver.vehicle_type}</p>
+                <p className="text-sm">Phone: {driver.phone || "N/A"}</p>
+                <p className="text-sm">Vehicle: {driver.vehicle_type || "N/A"}</p>
               </div>
             ))
           ) : (
