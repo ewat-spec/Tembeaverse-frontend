@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
-import UserMenu from "@/component/UserMenu";
+import UserMenu from "./component/UserMenu"; // Fixed import path
 
 // Define a type for driver
 type Driver = {
